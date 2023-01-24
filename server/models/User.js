@@ -29,8 +29,6 @@ const UserSchema = new Schema(
     picturePath: {
       type: String,
       default: "",
-      min: 5,
-      max: 50,
     },
     friends: {
       type: Array,

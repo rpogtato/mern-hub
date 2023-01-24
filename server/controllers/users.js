@@ -20,11 +20,11 @@ export async function getUserFriends(req, res) {
       user.friends.map((id) => User.findById(id))
     );
     const formattedFriends = friends.map(
-      ({ _id, firstName, lastName, occupation, picturePath }) => {
-        return { _id, firstName, lastName, occupation, picturePath };
+      ({ _id, firstName, lastName, occupation, location, picturePath }) => {
+        return { _id, firstName, lastName, occupation, location, picturePath };
       }
     );
-    req.status(200).json(formattedFriends);
+    res.status(200).json(formattedFriends);
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
@@ -43,7 +43,7 @@ export async function addRemoveFriend(req, res) {
       friend.friends = friend.friends.filter((id) => id !== id);
     } else {
       user.friends.push(friendId);
-      friend.friends, push(id);
+      friend.friends.push(id);
     }
     await user.save();
     await friend.save();
@@ -52,8 +52,8 @@ export async function addRemoveFriend(req, res) {
       user.friends.map((id) => User.findById(id))
     );
     const formattedFriends = friends.map(
-      ({ _id, firstName, lastName, occupation, picturePath }) => {
-        return { _id, firstName, lastName, occupation, picturePath };
+      ({ _id, firstName, lastName, occupation, location, picturePath }) => {
+        return { _id, firstName, lastName, occupation, location, picturePath };
       }
     );
 

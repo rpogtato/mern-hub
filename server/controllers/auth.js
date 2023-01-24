@@ -6,7 +6,7 @@ import User from "../models/User.js";
 export async function register(req, res) {
   try {
     const {
-      firstname,
+      firstName,
       lastName,
       email,
       password,
@@ -20,7 +20,7 @@ export async function register(req, res) {
     const passwordHash = await bcrypt.hash(password, salt);
 
     const newUser = new User({
-      firstname,
+      firstName,
       lastName,
       email,
       password: passwordHash,
@@ -28,8 +28,8 @@ export async function register(req, res) {
       friends,
       location,
       occupation,
-      viewedProfile: Math.floor(Math.random() * 1000),
-      impressions: Math.floor(Math.random() * 1000),
+      viewedProfile: Math.floor(Math.random() * 10000),
+      impressions: Math.floor(Math.random() * 10000),
     });
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
@@ -42,11 +42,11 @@ export async function register(req, res) {
 export async function login(req, res) {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email });
     if (!user) return res.status(400).json({ msg: "User does not exist" });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
+    if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." });
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     delete user.password;

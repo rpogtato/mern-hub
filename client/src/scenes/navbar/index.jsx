@@ -39,7 +39,7 @@ export default function Navbar() {
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
-  const fullName = `${user.firstname} ${user.lastName}`;
+  const fullName = `${user.firstName} ${user.lastName}`;
 
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
@@ -48,7 +48,7 @@ export default function Navbar() {
           fontWeight="bold"
           fontSize="clamp(1rem, 2rem, 2.25rem)"
           color="primary"
-          onCLick={() => navigate("/home")}
+          onClick={() => navigate("/home")}
           sx={{
             "&:hover": {
               color: primaryLight,
@@ -131,7 +131,7 @@ export default function Navbar() {
           minWidth="300px"
           backgroundColor={background}
         >
-          {/*  CLOSE ICON */}
+          {/* CLOSE ICON */}
           <Box display="flex" justifyContent="flex-end" p="1rem">
             <IconButton
               onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}
