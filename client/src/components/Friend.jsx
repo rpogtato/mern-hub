@@ -32,8 +32,12 @@ export default function Friend({ friendId, name, subtitle, userPicturePath }) {
         },
       }
     );
-    const data = await response.json();
-    dispatch(setFriends({ friends: data }));
+    if (friendId === _id) {
+      return null;
+    } else {
+      const data = await response.json();
+      dispatch(setFriends({ friends: data }));
+    }
   }
 
   return (
@@ -64,6 +68,7 @@ export default function Friend({ friendId, name, subtitle, userPicturePath }) {
           </Typography>
         </Box>
       </FlexBetween>
+
       <IconButton
         onClick={() => patchFriend()}
         sx={{ backgroundColor: primaryLight, p: "0.6rem" }}

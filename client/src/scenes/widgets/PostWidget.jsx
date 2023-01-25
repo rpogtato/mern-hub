@@ -51,6 +51,7 @@ export default function PostWidget({
 
   return (
     <WidgetWrapper m="2rem 0">
+      {/* importat */}
       <Friend
         friendId={postUserId}
         name={name}
