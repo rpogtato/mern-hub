@@ -13,7 +13,7 @@ export default function FriendListWidget({ userId }) {
 
   async function getFriends() {
     const response = await fetch(
-      `http://localhost:3001/users/${userId}/friends`,
+      `https://socio-backend.onrender.com/users/${userId}/friends`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
