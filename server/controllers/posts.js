@@ -71,3 +71,20 @@ export async function likePost(req, res) {
     res.status(404).json({ message: err.message });
   }
 }
+
+/* DELETE */
+
+export async function deletePost(req, res) {
+  try {
+    const { id } = req.params;
+    const post = await Post.findById(id);
+    const deletedPost = await Post.deleteOne(post);
+    if (deletedPost.deletedCount === 0) {
+      return res.status(404).send({ message: "Post not found" });
+    }
+
+    res.status(200).json(deletedPost);
+  } catch (err) {
+    res.status(409).json({ message: err.message });
+  }
+}

@@ -9,7 +9,7 @@ import UserImage from "./UserImage";
 export default function Friend({ friendId, name, subtitle, userPicturePath }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { _id } = useSelector((state) => state.user);
+  const userId = useSelector((state) => state.user._id);
   const token = useSelector((state) => state.token);
   const friends = useSelector((state) => state.user.friends);
 
@@ -23,7 +23,7 @@ export default function Friend({ friendId, name, subtitle, userPicturePath }) {
 
   async function patchFriend() {
     const response = await fetch(
-      `https://socio-backend.onrender.com/users/${_id}/${friendId}`,
+      `https://socio-backend.onrender.com/users/${userId}/${friendId}`,
       {
         method: "PATCH",
         headers: {
@@ -32,7 +32,7 @@ export default function Friend({ friendId, name, subtitle, userPicturePath }) {
         },
       }
     );
-    if (friendId === _id) {
+    if (friendId === userId) {
       return null;
     } else {
       const data = await response.json();

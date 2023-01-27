@@ -8,6 +8,7 @@ import {
 import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import Friend from "components/Friend";
+import DeletePost from "components/DeletePost";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -54,7 +55,7 @@ export default function PostWidget({
 
   return (
     <WidgetWrapper m="2rem 0">
-      {/* importat */}
+      {/* important */}
       <Friend
         friendId={postUserId}
         name={name}
@@ -93,7 +94,9 @@ export default function PostWidget({
             </IconButton>
             <Typography>{comments.length}</Typography>
           </FlexBetween>
+          <DeletePost postId={postId} postUserId={postUserId} />
         </FlexBetween>
+
         <IconButton>
           <ShareOutlined />
         </IconButton>
